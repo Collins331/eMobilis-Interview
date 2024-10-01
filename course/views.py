@@ -14,7 +14,7 @@ def create_course(request):
         form = CourseForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('list_courses')
+            return redirect('courses')
     else:
         form = CourseForm()
     return render(request, 'course/create_course.html', {'form': form})
@@ -25,7 +25,7 @@ def update_course(request, pk):
         form = CourseForm(request.POST, instance=course)
         if form.is_valid():
             form.save()
-            return redirect('course_list')
+            return redirect('courses')
     else:
         form = CourseForm(instance=course)
     return render(request, 'course/update_course.html', {'form': form})
@@ -39,5 +39,5 @@ def delete_course(request, pk):
     course = Course.objects.get(pk=pk)
     if request.method == "POST":
         course.delete()
-        return redirect('course_list')
+        return redirect('courses')
     return render(request, 'books/delete_course.html', {'course': course})

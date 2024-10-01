@@ -1,0 +1,6 @@
+<h1>Are you sure you want to delete "{{ course.name }}"?</h1>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Yes, Delete</button>
+</form>
+<a href="{% url 'courses' %}">Back to list</a>

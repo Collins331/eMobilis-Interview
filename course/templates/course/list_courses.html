@@ -4,6 +4,7 @@
         <h1>Title: {{ course.name }}</h1>
         <p>{{ course.description }}</p><br>
         <i>Teacher: {{ course.lecturer }}</i>
-        <a href="{% url 'update_course course.id %}">Edit</a>
+        <a href="{% url 'update' course.id %}">Update</a>
+        <a href="{% url 'delete' course.id %}">Delete</a>
     {% endfor %}
 {% endblock %}
