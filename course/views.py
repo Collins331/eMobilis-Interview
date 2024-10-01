@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from course.models import Course
 from .forms import CourseForm
@@ -19,8 +19,8 @@ def create_course(request):
         form = CourseForm()
     return render(request, 'course/create_course.html', {'form': form})
 
-def update_course(request, pk):
-    course = Course.objects.get(pk=pk)
+def update_course(request, id):
+    course = Course.objects.get(id=id)
     if request.method == "POST":
         form = CourseForm(request.POST, instance=course)
         if form.is_valid():
@@ -30,14 +30,14 @@ def update_course(request, pk):
         form = CourseForm(instance=course)
     return render(request, 'course/update_course.html', {'form': form})
 
-def course_detail(request, pk):
-    course = Course.objects.get(pk=pk)
+def course_detail(request, id):
+    course = Course.objects.get(id=id)
     return render(request, 'course/course_detail.html', {'course': course})
 
 
-def delete_course(request, pk):
-    course = Course.objects.get(pk=pk)
-    if request.method == "POST":
+def delete_course(request, id):
+    course = get_object_or_404(Course, id=id)
+    if request.method == 'POST':
         course.delete()
         return redirect('courses')
-    return render(request, 'books/delete_course.html', {'course': course})
+    return render(request, 'course/delete_course.html', {'course': course})
