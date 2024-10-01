@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block main %}
     {% for course in courses %}
-        <h1>Titlt: {{ course.name }}</h1>
+        <h1>Title: {{ course.name }}</h1>
         <p>{{ course.description }}</p><br>
         <i>Teacher: {{ course.lecturer }}</i>
+        <a href="{% url 'update_course course.id %}">Edit</a>
     {% endfor %}
 {% endblock %}

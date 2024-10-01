@@ -1,0 +1,7 @@
+<h1>Update Course</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Save</button>
+</form>
+<a href="{% url 'course_list' %}">Back to list</a>
